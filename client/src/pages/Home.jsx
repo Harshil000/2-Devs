@@ -1,14 +1,30 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Moon as Balloon } from 'lucide-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/Home.css'
 
 const Home = () => {
 
+    const [savedUser, setSavedUser] = useState(false)
+
+    const saveUser = async () => {
+        console.log(user.name)
+        setSavedUser(true)
+        await fetch("http://localhost:3000/save", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify({name:user.name, email: user.email})
+        })
+    }
+
     const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
 
     if (isLoading) {
         return <div>Loading ...</div>;
+    }
+
+    if (isAuthenticated && !savedUser) {
+        saveUser()
     }
 
     return (
