@@ -9,19 +9,24 @@ app.use(cors())
 app.use(bodyParser.json())
 
 app.get("/", (req, res)=> {
-  res.send("src")
+    res.send("src")
 })
 
-app.post("/save", async (req, res)=>{
-  const {name, email} = req.body
-  const newUser = await userModel.create({
-    name,
-    email,
-    highscore: 0
-  })
-  res.send("User Saved")
+
+app.post("/save-user", async (req, res)=>{
+    const {name, email} = req.body
+    const findUser = await userModel.findOne({email:email})
+    if(findUser){
+        return res.status(200).send("100");
+    }
+    const newUser = await userModel.create({
+        name,
+        email,
+        highscore: 0
+    })
+    res.send("User Saved")
 })
 
 app.listen(process.env.PORT, ()=> {
-  console.log(`Server started on port ${process.env.PORT}`)
+    console.log(`Server started on port ${process.env.PORT}`)
 })

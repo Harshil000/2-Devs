@@ -8,13 +8,18 @@ const Home = () => {
     const [savedUser, setSavedUser] = useState(false)
 
     const saveUser = async () => {
-        console.log(user.name)
         setSavedUser(true)
-        await fetch("http://localhost:3000/save", {
+        const response = await fetch("http://localhost:3000/save-user", {
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify({name:user.name, email: user.email})
         })
+        const data = await response.text()
+        if(data==="100"){
+            console.log("user already exists")
+        } else {
+            console.log("user saved")
+        }
     }
 
     const { user, isAuthenticated, isLoading, loginWithRedirect, logout } = useAuth0();
