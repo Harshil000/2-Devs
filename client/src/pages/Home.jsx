@@ -1,9 +1,19 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Moon as Balloon } from 'lucide-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import '../styles/Home.css'
 
 const Home = () => {
+
+    useEffect(() => {
+        const fetchLeaderBoard = async () => {
+            let LeaderBoard = await fetch("http://localhost:3000/leaderboard")
+            LeaderBoard = await LeaderBoard.json()
+            console.log(LeaderBoard)
+        }
+        fetchLeaderBoard()
+    }, [])
+
 
     const [savedUser, setSavedUser] = useState(false)
 
@@ -11,11 +21,11 @@ const Home = () => {
         setSavedUser(true)
         const response = await fetch("http://localhost:3000/save-user", {
             method: "POST",
-            headers: {"Content-Type": "application/json"},
-            body: JSON.stringify({name:user.name, email: user.email})
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ name: user.name, email: user.email })
         })
         const data = await response.text()
-        if(data==="100"){
+        if (data === "100") {
             console.log("user already exists")
         } else {
             console.log("user saved")
