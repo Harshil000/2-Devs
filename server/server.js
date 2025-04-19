@@ -18,7 +18,7 @@ app.post("/save-user", async (req, res)=>{
     const {name, email} = req.body
     const findUser = await userModel.findOne({email:email})
     if(findUser){
-        return res.status(200).send("100");
+        return res.status(200).send(JSON.stringify({"status": "100", "player" : findUser}));
     }
     const newUser = await userModel.create({
         name,
@@ -26,13 +26,13 @@ app.post("/save-user", async (req, res)=>{
         highscore: 0,
         uuid4: uuid4()
     })
-    res.send("User Saved")
+    res.send(JSON.stringify({"status": "200", "player" : newUser}));
 })
 
 app.get("/leaderboard", async(req, res)=> {
     let userData = await userModel.find({});
     userData.sort((a, b) => b.highscore - a.highscore)
-    userData = userData.slice(0, 10)
+    userData = userData.slice(0, 3)
     res.send(JSON.stringify(userData));
 })
 
