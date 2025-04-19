@@ -70,8 +70,7 @@ const Home = () => {
                         Login
                     </div> : <div className='flex flex-col space-x-2 gap-2'>
                         <span className='text-blue-400'>Hello , <span className='text-green-300'> {user.name} </span></span>
-                        {/* <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='cursor-pointer bg-red-500 hover:bg-red-700 transition-all w-fit px-2 text-white rounded-md'>LogOut</span> */}
-                        <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Button</span>
+                        <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Logout</span>
                     </div>}
                 </nav>
                 <div className="container mx-auto px-4 py-8 flex justify-evenly h-[60vh]">
@@ -94,11 +93,11 @@ const Home = () => {
                             <ul className="space-y-3">
                                 <li className="flex items-center space-x-2">
                                     <Target className="text-green-400" size={20} />
-                                    <span className="text-gray-300">Click on red balloons to earn points</span>
+                                    <span className="text-gray-300">Click on green balloons to earn points (+2)</span>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <Target className="text-red-400" size={20} />
-                                    <span className="text-gray-300">Avoid other colored balloons - they deduct points!</span>
+                                    <span className="text-gray-300">Avoid other colored balloons - they deduct points! (-1)</span>
                                 </li>
                             </ul>
                         </div>
@@ -123,7 +122,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
-                    <button class="plybtn"> Button
+                    <button class="plybtn"> Play
                     </button>
                 </div>
             </div>
