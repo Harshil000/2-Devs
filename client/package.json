@@ -12,6 +12,7 @@
   "dependencies": {
     "@auth0/auth0-react": "^2.3.0",
     "@tailwindcss/vite": "^4.0.17",
+    "aos": "^2.3.4",
     "dotenv": "^16.4.7",
     "lucide-react": "^0.485.0",
     "react": "^19.0.0",

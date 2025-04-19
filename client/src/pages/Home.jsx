@@ -4,6 +4,8 @@ import { Trophy, Target } from 'lucide-react';
 import { useAuth0 } from "@auth0/auth0-react";
 import LoadingScreen from './Loading';
 import '../styles/Home.css'
+import AOS from 'aos';
+import "aos/dist/aos.css";
 
 const Home = () => {
 
@@ -18,6 +20,9 @@ const Home = () => {
             SetLeaderBoardList(LeaderBoard)
         }
         fetchLeaderBoard()
+        AOS.init({
+            duration: 500
+        });
     }, [])
 
 
@@ -52,8 +57,8 @@ const Home = () => {
 
     return (
         <>
-            <div className='w-full h-screen bg-slate-950'>
-                <nav className='navbar'>
+            <div className='w-full h-screen bg-slate-950 overflow-hidden'>
+                <nav data-aos={"fade-down"} className='navbar'>
                     <div className="flex items-center space-x-2 cursor-pointer">
                         <Balloon className="text-blue-400" size={32} />
                         <span className="text-blue-400 text-2xl font-bold">Balloon Pop!</span>
@@ -70,7 +75,7 @@ const Home = () => {
                     </div>}
                 </nav>
                 <div className="container mx-auto px-4 py-8 flex justify-evenly h-[60vh]">
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-8 mb-8 border border-gray-700 w-[48%] h-[100%]">
+                    <div data-aos={"fade-right"} data-aos-delay={"300"} className="bg-gray-800 rounded-lg shadow-xl p-8 mb-8 border border-gray-700 w-[48%] h-[100%]">
                         <div className="flex items-center justify-between mb-6">
                             <div>
                                 <h1 className="text-3xl font-bold text-blue-400">Welcome to Balloon Pop!</h1>
@@ -99,7 +104,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div className="bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700 w-[48%] h-[100%]">
+                    <div data-aos={"fade-left"} data-aos-delay={"600"} className="bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700 w-[48%] h-[100%]">
                         <h2 className="text-2xl font-bold text-blue-400 mb-4">Leaderboard</h2>
                         <div className="space-y-4">
                             {LeaderBoardList.map((player, index) => (
@@ -117,7 +122,7 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div className='w-full flex justify-center items-center h-[20vh]'>
+                <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
                     <button class="plybtn"> Button
                     </button>
                 </div>
