@@ -122,7 +122,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
-                    <button class="plybtn"> Play
+                    <button class="plybtn"> Play !
                     </button>
                 </div>
             </div>
