@@ -6,6 +6,7 @@ import LoadingScreen from './Loading';
 import '../styles/Home.css'
 import AOS from 'aos';
 import "aos/dist/aos.css";
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -30,6 +31,7 @@ const Home = () => {
 
     const saveUser = async () => {
         setSavedUser(true)
+        setPlayer(user.name)
         const response = await fetch("http://localhost:3000/save-user", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -71,6 +73,8 @@ const Home = () => {
                     </div> : <div className='flex flex-col space-x-2 gap-2'>
                         <span className='text-blue-400'>Hello , <span className='text-green-300'> {user.name} </span></span>
                         <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Logout</span>
+                        {/* <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='cursor-pointer bg-red-500 hover:bg-red-700 transition-all w-fit px-2 text-white rounded-md'>LogOut</span> */}
+                        <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Log Out</span>
                     </div>}
                 </nav>
                 <div className="container mx-auto px-4 py-8 flex justify-evenly h-[60vh]">
@@ -122,9 +126,9 @@ const Home = () => {
                     </div>
                 </div>
                 <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
-                    <button class="plybtn"> Play !
-                    </button>
-                </div>
+                     <Link to='/play' class="plybtn"> Play !
+                     </Link>
+                 </div>
             </div>
         </>
     )
