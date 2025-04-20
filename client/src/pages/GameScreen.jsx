@@ -1,20 +1,41 @@
 import gsap from 'gsap'
-import { useGSAP } from '@gsap/react'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { v4 as uuidv4 } from 'uuid'
+import "../styles/Home.css"
+import { Link } from 'react-router-dom'
 
-const GameScreen = () => {
+const GameScreen = ({setHighScore}) => {
     const balloonColors = ["blue", "green","blue", 'red', 'blue', 'orange', 'blue', 'neutral', 'blue', "violet"]
 
     const [balloons, setBalloons] = useState([])
     const [score, setScore] = useState(0)
+    const [timeLeft, setTimeLeft] = useState(60)
+
+    useEffect(() => {
+        const interval = setInterval(() => {
+            addBalloon();
+        }, 500);
+
+        const timeout = setTimeout(() => {
+            clearInterval(interval);
+            // setHighScore(score)
+            console.log("Stopped spawning balloons");
+        }, 60000); 
+
+        return () => {
+            clearInterval(interval);
+            clearTimeout(timeout);
+        };
+    }, []);
 
     useEffect(()=> {
-        const interval = setInterval(()=> {
-            addBalloon() 
-        }, 500)
-        return () => clearInterval(interval)
-    }, [])
+        if(timeLeft<=0)return
+
+        const timer = setTimeout(()=> {
+            setTimeLeft(prev=>prev-1)
+        }, 1000)
+        return ()=>clearTimeout(timer)
+    }, [timeLeft])
 
     const addBalloon = () => {
         const id = uuidv4()
@@ -49,9 +70,12 @@ const GameScreen = () => {
 
   return (
     <div className='w-full h-screen bg-slate-950 relative overflow-hidden'>
-      <h2 className='absolute top-4 left-4 text-white text-4xl font-semibold'>Score: {score}</h2>
+      <Link to='/' className='absolute top-10 left-10 text-4xl font-semibold text-blue-500 cursor-pointer border-4 border-blue-500 px-4 py-2 rounded-lg'>{"< Back"}</Link>
+      <h2 className='absolute top-10 left-1/2 -translate-x-1/2 text-white text-3xl'>{`Time Left: ${timeLeft}`}</h2>
+      <h2 className='absolute top-10 right-10 text-white text-4xl font-semibold'>Score: {score}</h2>
       {
-        balloons.map((balloon)=> (
+        timeLeft!==0 ? 
+          (balloons.map((balloon)=> (
             <div 
             key={balloon.id} 
             ref={balloon.ref}
@@ -60,7 +84,17 @@ const GameScreen = () => {
             onClick={()=>handlePop(balloon.id, balloon.color)}
             >
             </div>
-        ))
+        )))
+          :
+          (
+              <div className='absolute top-1/2 left-1/2 -translate-1/2'>
+            <div className='text-7xl text-white font-medium'>You Scored {score} points.</div>
+              <div className='flex items-center justify-evenly mt-10'>
+                <button onClick={()=>window.location.reload()} className='text-white text-3xl border-3 border-white px-3 py-2 rounded-md'>Play Again</button>
+                <Link to="/" className='text-white text-3xl border-3 border-white px-3 py-2 rounded-md'>View Leaderboard</Link> 
+              </div>
+              </div>
+          )
       }
     </div>
   )

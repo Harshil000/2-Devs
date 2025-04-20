@@ -8,7 +8,7 @@ import AOS from 'aos';
 import "aos/dist/aos.css";
 import { Link } from 'react-router-dom';
 
-const Home = () => {
+const Home = ({score}) => {
 
     const [CurrentPlayer, SetCurrentPlayer] = useState({})
     const [LeaderBoardList, SetLeaderBoardList] = useState([])
@@ -17,7 +17,6 @@ const Home = () => {
         const fetchLeaderBoard = async () => {
             let LeaderBoard = await fetch("http://localhost:3000/leaderboard")
             LeaderBoard = await LeaderBoard.json()
-            // console.log(LeaderBoard)
             SetLeaderBoardList(LeaderBoard)
         }
         fetchLeaderBoard()
@@ -31,7 +30,6 @@ const Home = () => {
 
     const saveUser = async () => {
         setSavedUser(true)
-        setPlayer(user.name)
         const response = await fetch("http://localhost:3000/save-user", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -72,8 +70,6 @@ const Home = () => {
                         Login
                     </div> : <div className='flex flex-col space-x-2 gap-2'>
                         <span className='text-blue-400'>Hello , <span className='text-green-300'> {user.name} </span></span>
-                        <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Logout</span>
-                        {/* <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='cursor-pointer bg-red-500 hover:bg-red-700 transition-all w-fit px-2 text-white rounded-md'>LogOut</span> */}
                         <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Log Out</span>
                     </div>}
                 </nav>
