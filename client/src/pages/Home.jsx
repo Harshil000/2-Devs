@@ -97,7 +97,7 @@ const Home = () => {
                             <ul className="space-y-3">
                                 <li className="flex items-center space-x-2">
                                     <Target className="text-green-400" size={20} />
-                                    <span className="text-gray-300">Click on green balloons to earn points (+2)</span>
+                                    <span className="text-gray-300">Click on blue balloons to earn points (+2)</span>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <Target className="text-red-400" size={20} />
@@ -126,7 +126,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
-                     <Link to='/play' class="plybtn"> Play !
+                     <Link to='/play' className="plybtn"> Play !
                      </Link>
                  </div>
             </div>
