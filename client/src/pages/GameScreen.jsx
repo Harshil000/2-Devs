@@ -46,17 +46,21 @@ const GameScreen = ({setHighScore}) => {
 
         setBalloons(prev => [...prev, newBalloon])
 
-
+        const speed = Math.random()*3 + 4
         setTimeout(()=> {
             if(ref.current) {
                 gsap.to(ref.current, {
-                    y: -window.innerHeight,
-                    duration: 5,
+                    y: -(window.innerHeight+144),
+                    duration: speed,
                     ease: 'linear',
+                    onComplete : () => {
+                        setBalloons(prev => prev.filter(b=>b.id!==id))
+                    }
                 })
             }
         }, 50)
     }
+
 
     const handlePop = (id,color) => {
         if(color!=="blue"){
@@ -79,7 +83,7 @@ const GameScreen = ({setHighScore}) => {
             <div 
             key={balloon.id} 
             ref={balloon.ref}
-            className={`absolute bottom-0 h-36 w-36 bg-${balloon.color}-400 rounded-full cursor-pointer`}
+            className={`shadow-2xl shadow-black absolute -bottom-36 h-36 w-36 bg-${balloon.color}-400 rounded-full cursor-pointer`}
             style={{left: `${balloon.left}%`}}
             onClick={()=>handlePop(balloon.id, balloon.color)}
             >
