@@ -56,8 +56,7 @@ const GameScreen = () => {
         const id = uuidv4()
         const ref = React.createRef()
         const left = Math.random() * 90
-        // const color = balloonColors[Math.floor((Math.random() * 10))]
-        const color = 'blue'
+        const color = balloonColors[Math.floor((Math.random() * 10))]
         const newBalloon = { id, ref, left, color }
 
         setBalloons(prev => [...prev, newBalloon])
