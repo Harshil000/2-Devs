@@ -26,7 +26,7 @@ const GameScreen = () => {
         }, 60000);
 
         const getUser = async () => {
-            const response = await fetch("http://two-devs.onrender.com/get-user", {
+            const response = await fetch("https://two-devs.onrender.com/get-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ uuid4: uuid4 })
@@ -89,7 +89,7 @@ const GameScreen = () => {
     useEffect(() => {
         if (score > CurrentPlayer.highscore) {
             const changeHighScore = async () => {
-                const response = await fetch("http://two-devs.onrender.com/UpdateScore", {
+                const response = await fetch("https://two-devs.onrender.com/UpdateScore", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email: CurrentPlayer.email, score: score })

@@ -15,7 +15,7 @@ const Home = () => {
 
     useEffect(() => {
         const fetchLeaderBoard = async () => {
-            let LeaderBoard = await fetch("http://two-devs.onrender.com/leaderboard")
+            let LeaderBoard = await fetch("https://two-devs.onrender.com/leaderboard")
             LeaderBoard = await LeaderBoard.json()
             SetLeaderBoardList(LeaderBoard)
         }
@@ -30,7 +30,7 @@ const Home = () => {
 
     const saveUser = async () => {
         setSavedUser(true)
-        const response = await fetch("http://two-devs.onrender.com/save-user", {
+        const response = await fetch("https://two-devs.onrender.com/save-user", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({ name: user.name, email: user.email })
