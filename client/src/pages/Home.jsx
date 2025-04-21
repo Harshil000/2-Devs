@@ -8,7 +8,7 @@ import AOS from 'aos';
 import "aos/dist/aos.css";
 import { Link } from 'react-router-dom';
 
-const Home = ({score}) => {
+const Home = () => {
 
     const [CurrentPlayer, SetCurrentPlayer] = useState({})
     const [LeaderBoardList, SetLeaderBoardList] = useState([])
@@ -36,11 +36,9 @@ const Home = ({score}) => {
             body: JSON.stringify({ name: user.name, email: user.email })
         })
         const data = await response.json()
-        if (data.status === "100") {
-            // console.log("user already exists")
+        if (data.status === "200") {
             SetCurrentPlayer(data.player)
         } else {
-            // console.log("user saved")
             SetCurrentPlayer(data.player)
         }
     }
@@ -122,8 +120,8 @@ const Home = ({score}) => {
                     </div>
                 </div>
                 <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
-                     <Link to='/play' className="plybtn"> Play !
-                     </Link>
+                    {isAuthenticated ? <Link to={`/play?name=${user.name}&email=${user.email}`} className="plybtn"> Play !
+                        </Link> : <div className='text-gray-400 text-2xl font-semibold px-4 py-2 border rounded-xl border-gray-400 w-fit'>Login to Play</div>}
                  </div>
             </div>
         </>
