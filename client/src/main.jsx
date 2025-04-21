@@ -7,7 +7,9 @@ import App from './App.jsx'
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <Auth0Provider
+      // domain={import.meta.env.DOMAIN}
       domain="dev-kbdutritxkhecdv7.us.auth0.com"
+      // clientId={import.meta.env.CLIENT_ID}
       clientId="17POntv0Fu1jrdWq5CkMl998iSzNPywA"
       authorizationParams={{
         redirect_uri: window.location.origin
