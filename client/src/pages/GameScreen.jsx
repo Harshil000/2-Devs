@@ -65,7 +65,7 @@ const GameScreen = () => {
         setTimeout(() => {
             if (ref.current) {
                 gsap.to(ref.current, {
-                    y: -(window.innerHeight + 144),
+                    y: -(window.innerHeight + 192),
                     duration: speed,
                     ease: 'linear',
                     onComplete: () => {
@@ -113,11 +113,11 @@ const GameScreen = () => {
             <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-orange-400 h-2 w-2`}></div>
             <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-neutral-400 h-2 w-2`}></div>
 
-            <Link to='/' className='absolute top-10 left-10 text-4xl font-semibold text-blue-500 cursor-pointer border-4 border-blue-500 px-4 py-2 rounded-lg z-10'>{"< Back"}</Link>
-            <h2 className='absolute top-10 left-1/2 -translate-x-1/2 text-white text-3xl z-10'>{`Time Left: ${timeLeft}`}</h2>
-            <div className='top-10 right-10 absolute text-white text-4xl font-semibold z-10'>
+            <Link to='/' className='absolute md:top-10 top-5 left-5 md:left-10 text-md md:text-xl font-semibold text-blue-500 cursor-pointer border-4 border-blue-500 px-2 py-1 md:px-4 md:py-2 rounded-lg z-10'>{"< Back"}</Link>
+            <h2 className='absolute md:top-10 top-7 left-33 text-white text-lg md:text-3xl z-10'>{`Time Left: ${timeLeft}`}</h2>
+            <div className='md:top-10 top-5 md:right-10 right-5 absolute text-white text-md md:text-4xl font-semibold z-10'>
                 <h2>Score: {score}</h2>
-                <h2>HighscoreScore: {CurrentPlayer.highscore}</h2>
+                <h2>Highscore: {CurrentPlayer.highscore}</h2>
             </div>
             {
                 timeLeft !== 0 ?
@@ -125,7 +125,7 @@ const GameScreen = () => {
                         <div
                             key={balloon.id}
                             ref={balloon.ref}
-                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-${balloon.color}-400 h-48 w-36 cursor-pointer`}
+                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-${balloon.color}-400 h-24 w-15 md:w-36 md:h-48 cursor-pointer`}
                             style={{ left: `${balloon.left}%`, borderRadius: "75% 75% 70% 70%" }}
                             onClick={() => handlePop(balloon.id, balloon.color)}
                         >
@@ -134,10 +134,10 @@ const GameScreen = () => {
                     :
                     (
                         <div className='absolute top-1/2 left-1/2 -translate-1/2'>
-                            <div className='text-7xl text-white font-medium'>You Scored {score} points.</div>
-                            <div className='flex items-center justify-evenly mt-10'>
-                                <button onClick={() => window.location.reload()} className='text-white text-3xl border-3 border-white px-3 py-2 rounded-md cursor-pointer'>Play Again</button>
-                                <Link to="/" className='text-white text-3xl border-3 border-white px-3 py-2 rounded-md'>View Leaderboard</Link>
+                            <div className='text-4xl md:text-7xl text-white font-medium'>You Scored {score} points.</div>
+                            <div className='flex md:flex-row flex-col md:gap-0 gap-5 items-center justify-evenly mt-10'>
+                                <button onClick={() => window.location.reload()} className='text-white text-xl md:text-3xl border-3 border-white px-3 py-2 rounded-md cursor-pointer'>Play Again</button>
+                                <Link to="/" className='text-white text-xl md:text-3xl border-3 border-white px-3 py-2 rounded-md'>View Leaderboard</Link>
                             </div>
                         </div>
                     )
