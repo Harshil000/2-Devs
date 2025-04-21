@@ -125,7 +125,7 @@ const GameScreen = () => {
                         <div
                             key={balloon.id}
                             ref={balloon.ref}
-                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-${balloon.color}-400 h-24 w-15 md:w-36 md:h-48 cursor-pointer`}
+                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-blue-400 h-24 w-15 md:w-36 md:h-48 cursor-pointer`}
                             style={{ left: `${balloon.left}%`, borderRadius: "75% 75% 70% 70%" }}
                             onClick={() => handlePop(balloon.id, balloon.color)}
                         >
