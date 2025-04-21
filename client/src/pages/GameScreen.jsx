@@ -26,7 +26,7 @@ const GameScreen = () => {
         }, 60000);
 
         const getUser = async () => {
-            const response = await fetch("http://localhost:3000/get-user", {
+            const response = await fetch("http://two-devs.onrender.com/get-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ uuid4: uuid4 })
@@ -89,7 +89,7 @@ const GameScreen = () => {
     useEffect(() => {
         if (score > CurrentPlayer.highscore) {
             const changeHighScore = async () => {
-                const response = await fetch("http://localhost:3000/UpdateScore", {
+                const response = await fetch("http://two-devs.onrender.com/UpdateScore", {
                     method: "POST",
                     headers: { "Content-Type": "application/json" },
                     body: JSON.stringify({ email: CurrentPlayer.email, score: score })
@@ -105,6 +105,14 @@ const GameScreen = () => {
 
     return (
         <div className='w-full h-screen bg-slate-950 relative overflow-hidden'>
+
+            <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-green-400 h-2 w-2`}></div>
+            <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-blue-400 h-2 w-2`}></div>
+            <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-violet-400 h-2 w-2`}></div>
+            <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-red-400 h-2 w-2`}></div>
+            <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-orange-400 h-2 w-2`}></div>
+            <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-neutral-400 h-2 w-2`}></div>
+
             <Link to='/' className='absolute top-10 left-10 text-4xl font-semibold text-blue-500 cursor-pointer border-4 border-blue-500 px-4 py-2 rounded-lg z-10'>{"< Back"}</Link>
             <h2 className='absolute top-10 left-1/2 -translate-x-1/2 text-white text-3xl z-10'>{`Time Left: ${timeLeft}`}</h2>
             <div className='top-10 right-10 absolute text-white text-4xl font-semibold z-10'>
@@ -117,8 +125,8 @@ const GameScreen = () => {
                         <div
                             key={balloon.id}
                             ref={balloon.ref}
-                            className={`shadow-2xl shadow-black absolute -bottom-36 h-48 w-36 cursor-pointer`}
-                            style={{ left: `${balloon.left}%`, backgroundColor: balloon.color, borderRadius: "75% 75% 70% 70%" }}
+                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-${balloon.color}-400 h-48 w-36 cursor-pointer`}
+                            style={{ left: `${balloon.left}%`, borderRadius: "75% 75% 70% 70%" }}
                             onClick={() => handlePop(balloon.id, balloon.color)}
                         >
                         </div>
