@@ -115,7 +115,7 @@ const GameScreen = () => {
             <div className={`hidden shadow-2xl shadow-black absolute -bottom-48 bg-neutral-400 h-2 w-2`}></div>
 
             <Link to='/' className='absolute md:top-10 top-5 left-5 md:left-10 text-md md:text-xl font-semibold text-blue-500 cursor-pointer border-4 border-blue-500 px-2 py-1 md:px-4 md:py-2 rounded-lg z-10'>{"< Back"}</Link>
-            <h2 className='absolute md:top-10 top-7 left-33 text-white text-lg md:text-3xl z-10'>{`Time Left: ${timeLeft}`}</h2>
+            <h2 className='absolute md:top-10 top-7 left-33 md:left-1/2 md:-translate-1/2 text-white text-lg md:text-3xl z-10'>{`Time Left: ${timeLeft}`}</h2>
             <div className='md:top-10 top-5 md:right-10 right-5 absolute text-white text-md md:text-4xl font-semibold z-10'>
                 <h2>Score: {score}</h2>
                 <h2>Highscore: {CurrentPlayer.highscore}</h2>
@@ -126,7 +126,7 @@ const GameScreen = () => {
                         <div
                             key={balloon.id}
                             ref={balloon.ref}
-                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-blue-400 h-24 w-15 md:w-36 md:h-48 cursor-pointer`}
+                            className={`shadow-2xl shadow-black absolute -bottom-48 bg-${balloon.color}-400 h-24 w-15 md:w-36 md:h-48 cursor-pointer`}
                             style={{ left: `${balloon.left}%`, borderRadius: "75% 75% 70% 70%" }}
                             onClick={() => handlePop(balloon.id, balloon.color)}
                         >
