@@ -13,8 +13,7 @@ const GameScreen = () => {
     const [CurrentPlayer , SetCurrentPlayer] = useState({})
     const location = useLocation();
     const queryParams = new URLSearchParams(location.search);
-    const name = queryParams.get('name');
-    const email = queryParams.get('email');
+    const uuid4 = queryParams.get('uuid4');
 
     useEffect(() => {
         const interval = setInterval(() => {
@@ -27,10 +26,10 @@ const GameScreen = () => {
         }, 60000);
 
         const getUser = async () => {
-            const response = await fetch("http://localhost:3000/save-user", {
+            const response = await fetch("http://localhost:3000/get-user", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                body: JSON.stringify({ name: name, email: email })
+                body: JSON.stringify({ uuid4: uuid4 })
             })
             const data = await response.json()
             SetCurrentPlayer(data.player)

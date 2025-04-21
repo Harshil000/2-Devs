@@ -29,6 +29,15 @@ app.post("/save-user", async (req, res) => {
     res.send(JSON.stringify({ "status": "200", "player": newUser }));
 })
 
+app.post("/get-user" , async (req, res) => {
+    const { uuid4 } = req.body
+    const findUser = await userModel.findOne({ uuid4: uuid4 })
+    if (findUser) {
+        return res.status(200).send(JSON.stringify({ "status": "200", "player": findUser }));
+    }
+    res.send(JSON.stringify({ "status": "404" }))
+})
+
 app.post("/UpdateScore", async (req, res) => {
     const result = await userModel.updateOne({email: req.body.email}, {highscore: req.body.score})
     res.send("100")

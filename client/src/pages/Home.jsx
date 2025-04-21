@@ -120,7 +120,7 @@ const Home = () => {
                     </div>
                 </div>
                 <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
-                    {isAuthenticated ? <Link to={`/play?name=${user.name}&email=${user.email}`} className="plybtn"> Play !
+                    {isAuthenticated ? <Link to={`/play?uuid4=${CurrentPlayer.uuid4}`} className="plybtn"> Play !
                         </Link> : <div className='text-gray-400 text-2xl font-semibold px-4 py-2 border rounded-xl border-gray-400 w-fit'>Login to Play</div>}
                  </div>
             </div>
