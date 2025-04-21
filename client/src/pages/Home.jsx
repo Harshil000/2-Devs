@@ -91,11 +91,11 @@ const Home = () => {
                             <ul className="space-y-3">
                                 <li className="flex items-center space-x-2">
                                     <Target className="text-green-400" size={20} />
-                                    <span className="text-gray-300">Click on blue balloons to earn points (+2)</span>
+                                    <span className="text-gray-300">Click on <span className='text-green-400 font-semibold'>blue balloons</span> to earn points (+2)</span>
                                 </li>
                                 <li className="flex items-center space-x-2">
                                     <Target className="text-red-400" size={20} />
-                                    <span className="text-gray-300">Avoid other colored balloons - they deduct points! (-1)</span>
+                                    <span className="text-gray-300">Avoid <span className='text-red-400 font-semibold'>other colored balloons</span> - they deduct points! (-1)</span>
                                 </li>
                             </ul>
                         </div>
