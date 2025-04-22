@@ -136,7 +136,7 @@ const GameScreen = () => {
                         <div className='absolute top-1/2 left-1/2 -translate-1/2'>
                             <div className='text-4xl md:text-7xl text-white font-medium'>You Scored {score} points.</div>
                             <div className='flex md:flex-row flex-col md:gap-0 gap-5 items-center justify-evenly mt-10'>
-                                <button onClick={() => window.location.reload()} className='text-white text-xl md:text-3xl border-3 border-white px-3 py-2 rounded-md cursor-pointer'>Play Again</button>
+                                <Link to="/play" className='text-white text-xl md:text-3xl border-3 border-white px-3 py-2 rounded-md cursor-pointer'>Play Again</Link>
                                 <Link to="/" className='text-white text-xl md:text-3xl border-3 border-white px-3 py-2 rounded-md'>View Leaderboard</Link>
                             </div>
                         </div>
