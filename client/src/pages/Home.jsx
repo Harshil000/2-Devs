@@ -55,33 +55,33 @@ const Home = () => {
 
     return (
         <>
-            <div className='w-full h-screen bg-slate-950 overflow-hidden'>
-                <nav data-aos={"fade-down"} className='navbar'>
+            <div className='w-full min-h-screen bg-slate-950'>
+                <nav data-aos={"fade-down"} className='navbar px-5 md:px-[4rem]'>
                     <div className="flex items-center space-x-2 cursor-pointer">
                         <Balloon className="text-blue-400" size={32} />
                         <span className="text-blue-400 text-md md:text-2xl font-bold">Balloon Pop!</span>
                     </div>
-                    <div className='text-blue-400 text-md md:text-xl font-bold'>
+                    <div className='text-blue-400 hidden md:block text-xl font-bold'>
                         BOOM X BAM
                     </div>
                     {!isAuthenticated ? <div onClick={() => loginWithRedirect()} className='loginBTN'>
                         Login
                     </div> : <div className='flex flex-col space-x-2 gap-2'>
                         <span className='text-blue-400'>Hello , <span className='text-green-300'> {user.name} </span></span>
-                        <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn'>Log Out</span>
+                        <span onClick={() => logout({ logoutParams: { returnTo: window.location.origin } })} className='logoutBtn text-sm md:text-md'>Log Out</span>
                     </div>}
                 </nav>
-                <div className="container mx-auto px-4 py-8 flex justify-evenly h-[60vh]">
-                    <div data-aos={"fade-right"} data-aos-delay={"300"} className="bg-gray-800 rounded-lg shadow-xl p-8 mb-8 border border-gray-700 w-[48%] h-[100%]">
+                <div className="container mx-auto px-4 py-8 flex justify-evenly md:flex-row flex-col h-full md:h-[60vh] md:mt-0 mt-24">
+                    <div data-aos={"fade-right"} data-aos-delay={"300"} className="bg-gray-800 rounded-lg shadow-xl p-8 mb-8 border border-gray-700 w-full md:w-[48%] h-[100%]">
                         <div className="flex items-center justify-between mb-6">
                             <div>
-                                <h1 className="text-3xl font-bold text-blue-400">Welcome to Balloon Pop!</h1>
+                                <h1 className="text-2xl md:text-3xl font-bold text-blue-400">Welcome to Balloon Pop!</h1>
                                 <p className="text-gray-400 mt-2">Pop the red balloons to score points!</p>
                             </div>
-                            <div className="bg-gray-700 rounded-lg p-4 border border-gray-600">
+                            <div className="bg-gray-700 rounded-lg p-2 md:p-4 border border-gray-600">
                                 <div className="flex items-center space-x-2">
                                     <Trophy className="text-blue-400" />
-                                    <span className="text-xl font-bold text-blue-400">Score: {isAuthenticated ? CurrentPlayer.highscore : "-"}</span>
+                                    <span className="text-lg md:text-xl font-bold text-blue-400">Score: {isAuthenticated ? CurrentPlayer.highscore : "-"}</span>
                                 </div>
                             </div>
                         </div>
@@ -101,7 +101,7 @@ const Home = () => {
                         </div>
                     </div>
 
-                    <div data-aos={"fade-left"} data-aos-delay={"600"} className="bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700 w-[48%] h-[100%]">
+                    <div data-aos={"fade-left"} data-aos-delay={"600"} className="bg-gray-800 rounded-lg shadow-xl p-8 border border-gray-700 w-full md:w-[48%] h-[100%]">
                         <h2 className="text-2xl font-bold text-blue-400 mb-4">Leaderboard</h2>
                         <div className="space-y-4">
                             {LeaderBoardList.map((player, index) => (
@@ -119,10 +119,10 @@ const Home = () => {
                         </div>
                     </div>
                 </div>
-                <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh]'>
+                <div data-aos={"fade-up"} data-aos-delay={"1200"} className='w-full flex justify-center items-center h-[20vh] md:static absolute md:top-0 top-15 z-10'>
                     {isAuthenticated ? <Link to={`/play?uuid4=${CurrentPlayer.uuid4}`} className="plybtn"> Play !</Link> 
                         : 
-                        <div className='text-gray-400 text-2xl font-semibold px-4 py-2 border rounded-xl border-gray-400 w-fit'>Login to Play</div>}
+                        <div onClick={() => loginWithRedirect()} className='cursor-pointer text-red-400 text-2xl md:text-4xl font-semibold md:px-6 md:py-4 px-4 py-2 border rounded-xl border-red-400 w-fit'>Login to Play</div>}
                  </div>
             </div>
         </>
